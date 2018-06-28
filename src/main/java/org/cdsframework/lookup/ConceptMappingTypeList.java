@@ -30,7 +30,7 @@ package org.cdsframework.lookup;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import org.cdsframework.base.BaseEnumList;
-import org.cdsframework.enumeration.MappingType;
+import org.cdsframework.dto.OpenCdsConceptRelDTO;
 
 /**
  *
@@ -38,7 +38,7 @@ import org.cdsframework.enumeration.MappingType;
  */
 @Named
 @ApplicationScoped
-public class ConceptMappingTypeList extends BaseEnumList<MappingType> {
+public class ConceptMappingTypeList extends BaseEnumList<OpenCdsConceptRelDTO.MappingType> {
 
     private static final long serialVersionUID = 532093813612516194L;
 
