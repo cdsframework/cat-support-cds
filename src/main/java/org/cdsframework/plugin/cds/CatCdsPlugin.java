@@ -40,19 +40,13 @@ import org.cdsframework.dto.CdsVersionConceptDeterminationMethodRelDTO;
 import org.cdsframework.dto.CdsVersionDTO;
 import org.cdsframework.dto.ConceptDeterminationMethodDTO;
 import org.cdsframework.dto.CriteriaDTO;
-import org.cdsframework.dto.CriteriaDataTemplateRelDTO;
-import org.cdsframework.dto.CriteriaDataTemplateRelNodeDTO;
 import org.cdsframework.dto.CriteriaPredicateDTO;
 import org.cdsframework.dto.CriteriaPredicatePartDTO;
 import org.cdsframework.dto.CriteriaPredicatePartRelDTO;
 import org.cdsframework.dto.CriteriaResourceDTO;
 import org.cdsframework.dto.CriteriaResourceParamDTO;
 import org.cdsframework.dto.CriteriaVersionRelDTO;
-import org.cdsframework.dto.DataModelClassDTO;
-import org.cdsframework.dto.DataModelClassNodeDTO;
-import org.cdsframework.dto.DataModelDTO;
-import org.cdsframework.dto.DataTemplateDTO;
-import org.cdsframework.dto.DataTemplateNodeRelDTO;
+import org.cdsframework.dto.DataInputNodeDTO;
 import org.cdsframework.dto.OpenCdsConceptDTO;
 import org.cdsframework.dto.OpenCdsConceptRelDTO;
 import org.cdsframework.dto.ValueSetDTO;
@@ -157,32 +151,12 @@ public class CatCdsPlugin extends CatBasePlugin {
             }
         });
 
-        registerMessageArgCallback(CriteriaDataTemplateRelDTO.class, new MessageArgCallback<CriteriaDataTemplateRelDTO>() {
-            @Override
-            public Object[] getMessageArgs(CriteriaDataTemplateRelDTO dto, BaseModule module, SourceMethod sourceMethod) {
-                switch (sourceMethod) {
-                    default:
-                        return new Object[]{dto.getLabel(), module.getBaseHeader().toLowerCase()};
-                }
-            }
-        });
-
         registerMessageArgCallback(CdsVersionConceptDeterminationMethodRelDTO.class, new MessageArgCallback<CdsVersionConceptDeterminationMethodRelDTO>() {
             @Override
             public Object[] getMessageArgs(CdsVersionConceptDeterminationMethodRelDTO dto, BaseModule module, SourceMethod sourceMethod) {
                 switch (sourceMethod) {
                     default:
                         return new Object[]{dto.getConceptDeterminationMethodDTO() != null ? dto.getConceptDeterminationMethodDTO().getLabel(): null, "concept determination method mapping"};
-                }
-            }
-        });
-
-        registerMessageArgCallback(CriteriaDataTemplateRelNodeDTO.class, new MessageArgCallback<CriteriaDataTemplateRelNodeDTO>() {
-            @Override
-            public Object[] getMessageArgs(CriteriaDataTemplateRelNodeDTO dto, BaseModule module, SourceMethod sourceMethod) {
-                switch (sourceMethod) {
-                    default:
-                        return new Object[]{dto.getLabel(), module.getBaseHeader().toLowerCase()};
                 }
             }
         });
@@ -233,76 +207,6 @@ public class CatCdsPlugin extends CatBasePlugin {
                 switch (sourceMethod) {
                     default:
                         return new Object[]{dto.getCdsVersionDTO() != null ? dto.getCdsVersionDTO().getLabel() : null, module.getBaseHeader().toLowerCase()};
-                }
-            }
-        });
-
-        registerMessageArgCallback(DataModelClassDTO.class, new MessageArgCallback<DataModelClassDTO>() {
-            @Override
-            public Object[] getMessageArgs(DataModelClassDTO dto, BaseModule module, SourceMethod sourceMethod) {
-                switch (sourceMethod) {
-                    default:
-                        return new Object[]{dto.getName(), module.getBaseHeader().toLowerCase()};
-                }
-            }
-        });
-
-        registerMessageArgCallback(DataModelClassNodeDTO.class, new MessageArgCallback<DataModelClassNodeDTO>() {
-            @Override
-            public Object[] getMessageArgs(DataModelClassNodeDTO dto, BaseModule module, SourceMethod sourceMethod) {
-                switch (sourceMethod) {
-                    default:
-                        return new Object[]{dto.getName(), module.getBaseHeader().toLowerCase()};
-                }
-            }
-        });
-
-        registerMessageArgCallback(DataModelClassNodeDTO.class, new MessageArgCallback<DataModelClassNodeDTO>() {
-            @Override
-            public Object[] getMessageArgs(DataModelClassNodeDTO dto, BaseModule module, SourceMethod sourceMethod) {
-                switch (sourceMethod) {
-                    default:
-                        return new Object[]{dto.getName(), module.getBaseHeader().toLowerCase()};
-                }
-            }
-        });
-
-        registerMessageArgCallback(DataModelDTO.class, new MessageArgCallback<DataModelDTO>() {
-            @Override
-            public Object[] getMessageArgs(DataModelDTO dto, BaseModule module, SourceMethod sourceMethod) {
-                switch (sourceMethod) {
-                    default:
-                        return new Object[]{dto.getName(), module.getBaseHeader().toLowerCase()};
-                }
-            }
-        });
-
-        registerMessageArgCallback(DataModelClassNodeDTO.class, new MessageArgCallback<DataModelClassNodeDTO>() {
-            @Override
-            public Object[] getMessageArgs(DataModelClassNodeDTO dto, BaseModule module, SourceMethod sourceMethod) {
-                switch (sourceMethod) {
-                    default:
-                        return new Object[]{dto.getName(), module.getBaseHeader().toLowerCase()};
-                }
-            }
-        });
-
-        registerMessageArgCallback(DataTemplateDTO.class, new MessageArgCallback<DataTemplateDTO>() {
-            @Override
-            public Object[] getMessageArgs(DataTemplateDTO dto, BaseModule module, SourceMethod sourceMethod) {
-                switch (sourceMethod) {
-                    default:
-                        return new Object[]{dto.getName(), module.getBaseHeader().toLowerCase()};
-                }
-            }
-        });
-
-        registerMessageArgCallback(DataTemplateNodeRelDTO.class, new MessageArgCallback<DataTemplateNodeRelDTO>() {
-            @Override
-            public Object[] getMessageArgs(DataTemplateNodeRelDTO dto, BaseModule module, SourceMethod sourceMethod) {
-                switch (sourceMethod) {
-                    default:
-                        return new Object[]{dto.getDataModelClassNodeDTO() != null ? dto.getDataModelClassNodeDTO().getName() : null, module.getBaseHeader().toLowerCase()};
                 }
             }
         });

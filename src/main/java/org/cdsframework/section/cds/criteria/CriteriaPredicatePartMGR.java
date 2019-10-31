@@ -41,8 +41,6 @@ import org.cdsframework.dto.CdsCodeDTO;
 import org.cdsframework.dto.CdsCodeSystemDTO;
 import org.cdsframework.dto.CdsListDTO;
 import org.cdsframework.dto.CriteriaDTO;
-import org.cdsframework.dto.CriteriaDataTemplateRelDTO;
-import org.cdsframework.dto.CriteriaDataTemplateRelNodeDTO;
 import org.cdsframework.dto.CriteriaPredicateDTO;
 import org.cdsframework.dto.CriteriaPredicatePartConceptDTO;
 import org.cdsframework.dto.CriteriaPredicatePartDTO;
@@ -55,7 +53,6 @@ import org.cdsframework.exceptions.NotFoundException;
 import org.cdsframework.handlers.DefaultExceptionHandler;
 import org.cdsframework.util.StringUtils;
 import org.cdsframework.util.UtilityMGR;
-import org.cdsframework.util.comparator.CriteriaDataTemplateRelNodeComparator;
 import org.cdsframework.util.comparator.CriteriaPredicatePartComparator;
 import org.cdsframework.util.enumeration.PrePost;
 import org.cdsframework.util.enumeration.SourceMethod;
@@ -72,8 +69,6 @@ import org.primefaces.event.SelectEvent;
 public class CriteriaPredicatePartMGR extends BaseModule<CriteriaPredicatePartDTO> {
 
     private static final long serialVersionUID = -4248559360190468649L;
-    @Inject
-    private CriteriaDataTemplateRelMGR criteriaDataTemplateRelMGR;
     @Inject
     private CriteriaPredicateMGR criteriaPredicateMGR;
 
@@ -404,30 +399,6 @@ public class CriteriaPredicatePartMGR extends BaseModule<CriteriaPredicatePartDT
 //        }
 //        return result;
 //    }
-
-    public List<CriteriaDataTemplateRelNodeDTO> getCriteriaDataTemplateRelNodeDTOs() {
-        final String METHODNAME = "getCriteriaDataTemplateRelNodeDTOs ";
-        List<CriteriaDataTemplateRelDTO> dtoList = criteriaDataTemplateRelMGR.getDataTableMGR().getDtoList();
-        List<CriteriaDataTemplateRelNodeDTO> result = new ArrayList<CriteriaDataTemplateRelNodeDTO>();
-        PropertyBagDTO propertyBagDTO = new PropertyBagDTO();
-        propertyBagDTO.setQueryClass("ByParenRelId");
-        if (dtoList != null) {
-            for (CriteriaDataTemplateRelDTO item : dtoList) {
-                CriteriaDataTemplateRelNodeDTO criteriaDataTemplateRelNodeDTO = new CriteriaDataTemplateRelNodeDTO();
-                criteriaDataTemplateRelNodeDTO.setParentRelId(item.getRelId());
-                try {
-                    List<CriteriaDataTemplateRelNodeDTO> nodes = getMts().getGeneralMGR().findByQueryList(criteriaDataTemplateRelNodeDTO, getSessionDTO(), propertyBagDTO);
-                    for (CriteriaDataTemplateRelNodeDTO node : nodes) {
-                        result.add(node);
-                    }
-                } catch (Exception e) {
-                    DefaultExceptionHandler.handleException(e, getClass());
-                }
-            }
-        }
-        Collections.sort(result, new CriteriaDataTemplateRelNodeComparator());
-        return result;
-    }
 
     @Override
     public void prePostOperation(String queryClass, BaseDTO baseDTO, PrePost prePost, boolean status) {

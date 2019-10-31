@@ -36,8 +36,6 @@ import javax.inject.Named;
 import org.cdsframework.base.BaseDTO;
 import org.cdsframework.base.BaseModule;
 import org.cdsframework.dto.CriteriaDTO;
-import org.cdsframework.dto.CriteriaDataTemplateRelDTO;
-import org.cdsframework.dto.CriteriaDataTemplateRelNodeDTO;
 import org.cdsframework.dto.CriteriaPredicateDTO;
 import org.cdsframework.dto.CriteriaPredicatePartDTO;
 import org.cdsframework.dto.CriteriaResourceParamDTO;
@@ -58,8 +56,6 @@ public class CriteriaMGR extends BaseModule<CriteriaDTO> {
     @Inject
     private CriteriaVersionRelMGR criteriaVersionRelMGR;
     @Inject
-    private CriteriaDataTemplateRelMGR criteriaDataTemplateRelMGR;
-    @Inject
     private CriteriaPredicateMGR criteriaPredicateMGR;
 
     @Override
@@ -68,7 +64,6 @@ public class CriteriaMGR extends BaseModule<CriteriaDTO> {
         setInitialQueryClass("FindAll");
         setSaveImmediately(true);
         registerChild(CriteriaVersionRelDTO.ByCriteriaId.class, criteriaVersionRelMGR);
-        registerChild(CriteriaDataTemplateRelDTO.ByCriteriaId.class, criteriaDataTemplateRelMGR);
         registerChild(CriteriaPredicateDTO.ByCriteriaId.class, criteriaPredicateMGR);
     }
 
@@ -79,7 +74,6 @@ public class CriteriaMGR extends BaseModule<CriteriaDTO> {
         // Register the Components
         getTabService().registeredUIComponent(0, this);
         getTabService().registeredUIComponent(0, criteriaVersionRelMGR);
-        getTabService().registeredUIComponent(0, criteriaDataTemplateRelMGR);
         getTabService().registeredUIComponent(1, criteriaPredicateMGR);
     }
 
@@ -92,27 +86,6 @@ public class CriteriaMGR extends BaseModule<CriteriaDTO> {
         }
     }
 
-//
-//    /**
-//     * There is a opencds concept popup manager whose selected value needs to be added to the CriteriaDTO CriteriaConceptRelDTO
-//     * child list when this fires...
-//     *
-//     * @param selectEvent
-//     */
-//    @Override
-//    public void onRowSelectMain(SelectEvent selectEvent) {
-//        final String METHODNAME = "onRowSelectMain ";
-//        Object selectedObject = selectEvent.getObject();
-//        logger.debug(METHODNAME, "called: ", selectedObject);
-//        if (selectedObject instanceof OpenCdsConceptDTO) {
-//            CriteriaDTO parentDTO = getParentDTO();
-//            CriteriaConceptRelDTO criteriaConceptRelDTO = new CriteriaConceptRelDTO();
-//            criteriaConceptRelDTO.setOpenCdsConceptDTO((OpenCdsConceptDTO) selectedObject);
-//            parentDTO.addOrUpdateChildDTO(criteriaConceptRelDTO);
-//        } else {
-//            super.onRowSelectMain(selectEvent);
-//        }
-//    }
     public CriteriaDTO getFullCriteriaDTO(CriteriaDTO dto) {
         final String METHODNAME = "getFullCriteriaPredicateDTO ";
         logger.debug(METHODNAME, "dto=", dto);
@@ -132,17 +105,6 @@ public class CriteriaMGR extends BaseModule<CriteriaDTO> {
             onExceptionMain(SourceMethod.refresh, e);
         } finally {
 //            logger.logDuration(METHODNAME, start);
-        }
-        return result;
-    }
-
-    public List<CriteriaDataTemplateRelNodeDTO> getCriteriaDataTemplateRelNodeDTOs() {
-        List<CriteriaDataTemplateRelNodeDTO> result = new ArrayList<CriteriaDataTemplateRelNodeDTO>();
-        CriteriaDTO parentDTO = getParentDTO();
-        if (parentDTO != null) {
-            for (CriteriaDataTemplateRelDTO item : parentDTO.getCriteriaDataTemplateRelDTOs()) {
-                result.addAll(item.getCriteriaDataTemplateRelNodeDTOs());
-            }
         }
         return result;
     }
