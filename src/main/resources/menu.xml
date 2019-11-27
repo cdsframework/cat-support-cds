@@ -83,28 +83,6 @@
             <ns1:menuItemType>SEPARATOR</ns1:menuItemType>
         </menuItem>
         <menuItem>
-            <ns1:menuItemName>Data Model Editor</ns1:menuItemName>
-            <ns1:viewName>dataModelMGR.jsf</ns1:viewName>
-            <ns1:menuItemType>LINK</ns1:menuItemType>
-            <ns1:permissionType>FULL</ns1:permissionType>
-            <ns1:permissionClass>org.cdsframework.dto.DataModelDTO</ns1:permissionClass>
-        </menuItem>
-        <menuItem>
-            <ns1:menuItemName>Misc</ns1:menuItemName>
-            <ns1:menuItemType>SEPARATOR</ns1:menuItemType>
-        </menuItem>
-        <menuItem>
-            <ns1:menuItemName>Data Template Editor</ns1:menuItemName>
-            <ns1:viewName>dataTemplateMGR.jsf</ns1:viewName>
-            <ns1:menuItemType>LINK</ns1:menuItemType>
-            <ns1:permissionType>FULL</ns1:permissionType>
-            <ns1:permissionClass>org.cdsframework.dto.DataTemplateDTO</ns1:permissionClass>
-        </menuItem>
-        <menuItem>
-            <ns1:menuItemName>Misc</ns1:menuItemName>
-            <ns1:menuItemType>SEPARATOR</ns1:menuItemType>
-        </menuItem>
-        <menuItem>
             <ns1:menuItemName>Criteria Resource Editor</ns1:menuItemName>
             <ns1:viewName>criteriaResourceMGR.jsf</ns1:viewName>
             <ns1:menuItemType>LINK</ns1:menuItemType>
