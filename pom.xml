@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.cdsframework</groupId>
     <artifactId>cat-support-cds</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.0-DEMO-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>cat-support-cds</name>
 
@@ -23,12 +23,12 @@
         <dependency>
             <groupId>org.cdsframework</groupId>
             <artifactId>cat-support-core</artifactId>
-            <version>2.0.0</version>
+            <version>2.0.0-DEMO-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.cdsframework</groupId>
             <artifactId>mts-support-cds</artifactId>
-            <version>2.0.0</version>
+            <version>2.0.0-DEMO-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
