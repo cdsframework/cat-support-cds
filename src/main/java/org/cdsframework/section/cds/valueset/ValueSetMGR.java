@@ -279,16 +279,12 @@ public class ValueSetMGR extends BaseModule<ValueSetDTO> {
 
     public List<String> getVsacVersions() {
         final String METHODNAME = "getVsacVersions ";
-        SystemPropertyDTO uriPropertyDTO = systemPropertyDTOList.getByNameScope("VSAC_BASE_URI", "cds");
-        SystemPropertyDTO usernamePropertyDTO = systemPropertyDTOList.getByNameScope("VSAC_USERNAME", "cds");
-        SystemPropertyDTO passwordPropertyDTO = systemPropertyDTOList.getByNameScope("VSAC_PASSWORD", "cds");
-        String uri = uriPropertyDTO.getValue();
-        String username = usernamePropertyDTO.getValue();
-        String password = passwordPropertyDTO.getValue();
+        String uri = getVsacBaseURI();
+        String apiKey = getVsacApiKey();
         List<String> list = new ArrayList<String>();
         try {
             if (importOid.isEmpty() == false) {
-                list = VsacUtils.getVersionList(uri, username, password, importOid);
+                list = VsacUtils.getVersionList(uri, apiKey, importOid);
                 logger.info(METHODNAME, "Value Set Versions: " + (list != null ? list.size() : "null"));
             }
         } catch (Exception e) {
@@ -300,15 +296,11 @@ public class ValueSetMGR extends BaseModule<ValueSetDTO> {
 
     public List<String> getVsacProfiles() {
         final String METHODNAME = "getVsacProfiles ";
-        SystemPropertyDTO uriPropertyDTO = systemPropertyDTOList.getByNameScope("VSAC_BASE_URI", "cds");
-        SystemPropertyDTO usernamePropertyDTO = systemPropertyDTOList.getByNameScope("VSAC_USERNAME", "cds");
-        SystemPropertyDTO passwordPropertyDTO = systemPropertyDTOList.getByNameScope("VSAC_PASSWORD", "cds");
-        String uri = uriPropertyDTO.getValue();
-        String username = usernamePropertyDTO.getValue();
-        String password = passwordPropertyDTO.getValue();
+        String uri = getVsacBaseURI();
+        String apiKey = getVsacApiKey();
         List<String> list = new ArrayList<String>();
         try {
-            list = VsacUtils.getProfileList(uri, username, password);
+            list = VsacUtils.getProfileList(uri, apiKey);
             logger.info(METHODNAME, "Value Set Profiles: " + (list != null ? list.size() : "null"));
         } catch (Exception e) {
             onExceptionMain(METHODNAME, e);
@@ -316,6 +308,17 @@ public class ValueSetMGR extends BaseModule<ValueSetDTO> {
         Collections.sort(list);
         return list;
     }
+
+    private String getVsacApiKey()
+    {
+        return systemPropertyDTOList.getByNameScope("VSAC_APIKEY", "cds").getValue();
+    }
+
+    private String getVsacBaseURI()
+    {
+        return systemPropertyDTOList.getByNameScope("VSAC_BASE_URI", "cds").getValue();
+    }
+
 
     public String getImportOid() {
         return importOid;
